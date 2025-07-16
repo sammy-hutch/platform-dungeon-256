@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://m4uilvk1n1e0"]
+
+[ext_resource type="Script" uid="uid://51cv3hf4rjlm" path="res://scripts/teleporter.gd" id="1_pce0k"]
+[ext_resource type="Texture2D" uid="uid://duho80ock2gg6" path="res://assets/sprites/dungeon (1).png" id="1_vurns"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pce0k"]
+size = Vector2(10, 13)
+
+[node name="Teleporter" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_pce0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vurns")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_pce0k")
+
+[connection signal="body_entered" from="." to="." method="_on_player_entered_teleporter"]

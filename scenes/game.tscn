@@ -1,43 +1,21 @@
-[gd_scene load_steps=8 format=4 uid="uid://dq6j84bp2ihyk"]
+[gd_scene load_steps=5 format=3 uid="uid://dq6j84bp2ihyk"]
 
+[ext_resource type="Script" uid="uid://oej5l488whm8" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://cen0s14q80h41" path="res://scripts/game_manager.gd" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://brolc2wbii7ad" path="res://assets/sprites/dungeon.png" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://d3f830u00p22m" path="res://scenes/player.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://l17bnsix3jo1" path="res://scenes/killzone.tscn" id="3_lbhrr"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
-texture = ExtResource("2_lnu2h")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_iywne"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_lbhrr")
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+[ext_resource type="PackedScene" uid="uid://briibjvvlitim" path="res://scenes/level.tscn" id="3_lbhrr"]
 
 [node name="Game" type="Node"]
-script = ExtResource("1_uwrxv")
+script = ExtResource("1_lbhrr")
 
 [node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("1_uwrxv")
 
-[node name="Level" type="Node2D" parent="GameManager"]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="GameManager/Level"]
-position = Vector2(0, -44)
-scale = Vector2(0.5, 0.5)
-tile_map_data = PackedByteArray("AAD3/wUAAAAAAAAAAAD4/wUAAAAAAAAAAAD5/wUAAAAAAAAAAAD6/wUAAAAAAAAAAAD+/wYAAAAAAAAAAAD//wYAAAAAAAAAAAAAAAYAAAAAAAAAAAABAAYAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAYAAAAAAAAAAAAJAAYAAAAAAAAAAAAKAAUAAAAAAAAAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAAALAAIAAAAAAAAAAAAKAAEAAAAAAAAAAAAJAAAAAAAAAAAAAAAIAP//AAAAAAAAAAAFAP//AAAAAAAAAAAEAP//AAAAAAAAAAADAP//AAAAAAAAAAADAP7/AAAAAAAAAAACAP7/AAAAAAAAAAABAP7/AAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAARAAQAAAAAAAAAAAASAAQAAAAAAAAAAAATAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAVAAQAAAAAAAAAAAAWAAQAAAAAAAAAAAAXAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAZAAQAAAAAAAAAAAAaAAQAAAAAAAAAAAAbAAQAAAAAAAAAAAAcAAQAAAAAAAAAAAAdAAQAAAAAAAAAAAAeAAQAAAAAAAAAAAAfAAQAAAAAAAAAAAAgAAQAAAAAAAAAAAAhAAMAAAAAAAAAAAAiAAMAAAAAAAAAAAAjAAMAAAAAAAAAAAAkAAMAAAAAAAAAAAAlAAMAAAAAAAAAAAAmAAMAAAAAAAAAAAAnAAMAAAAAAAAAAAAoAAMAAAAAAAAAAAApAAMAAAAAAAAAAAAqAAMAAAAAAAAAAAArAAMAAAAAAAAAAAAsAAMAAAAAAAAAAAAtAAMAAAAAAAAAAAAuAAMAAAAAAAAAAAAvAAMAAAAAAAAAAAAwAAMAAAAAAAAAAAAxAAMAAAAAAAAAAAAyAAMAAAAAAAAAAAAgAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAfAP//AAAAAAAAAAAeAP//AAAAAAAAAAAdAP//AAAAAAAAAAAcAP//AAAAAAAAAAAbAP//AAAAAAAAAAAaAP//AAAAAAAAAAAZAP//AAAAAAAAAAAYAP//AAAAAAAAAAAXAP//AAAAAAAAAAAWAP//AAAAAAAAAAAVAP//AAAAAAAAAAAUAP//AAAAAAAAAAATAP//AAAAAAAAAAASAP//AAAAAAAAAAARAP//AAAAAAAAAAAQAP//AAAAAAAAAAAPAP//AAAAAAAAAAAOAP//AAAAAAAAAAANAP//AAAAAAAAAAAlAP3/AAAAAAAAAAAmAP3/AAAAAAAAAAAmAP7/AAAAAAAAAAAnAP7/AAAAAAAAAAAoAP7/AAAAAAAAAAAoAP3/AAAAAAAAAAAtAPz/AAAAAAAAAAAuAPz/AAAAAAAAAAAvAPz/AAAAAAAAAAAwAP3/AAAAAAAAAAA=")
-tile_set = SubResource("TileSet_iywne")
-
-[node name="Killzone" parent="GameManager/Level" instance=ExtResource("3_lbhrr")]
-position = Vector2(0, 48)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/Level/Killzone"]
-shape = SubResource("WorldBoundaryShape2D_iywne")
+[node name="Level" parent="GameManager" instance=ExtResource("3_lbhrr")]
 
 [node name="PlayerManager" type="Node2D" parent="."]
 
-[node name="Player" parent="PlayerManager" instance=ExtResource("2_yqjtg")]
+[node name="Player" parent="PlayerManager" groups=["player"] instance=ExtResource("2_yqjtg")]
 position = Vector2(0.00634384, -5.15788)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerManager/Player"]
