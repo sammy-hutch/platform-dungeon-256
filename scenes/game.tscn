@@ -12,13 +12,13 @@ script = ExtResource("1_lbhrr")
 script = ExtResource("1_uwrxv")
 
 [node name="Player" parent="GameManager" groups=["player"] instance=ExtResource("2_yqjtg")]
-position = Vector2(0.00634384, -5.15788)
+position = Vector2(56, -35)
 
 [node name="Camera2D" type="Camera2D" parent="GameManager/Player"]
 position = Vector2(-0.00634384, -23.8421)
 scale = Vector2(0.32, 1)
 zoom = Vector2(5, 5)
-limit_bottom = 100
+limit_bottom = 10000
 limit_smoothed = true
 position_smoothing_enabled = true
 

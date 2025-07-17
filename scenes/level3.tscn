@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=4 uid="uid://dq16j217ewihp"]
+
+[ext_resource type="Texture2D" uid="uid://brolc2wbii7ad" path="res://assets/sprites/dungeon.png" id="1_jyq2n"]
+[ext_resource type="Texture2D" uid="uid://duho80ock2gg6" path="res://assets/sprites/dungeon (1).png" id="2_7uttt"]
+[ext_resource type="PackedScene" uid="uid://l17bnsix3jo1" path="res://scenes/killzone.tscn" id="3_6lxtr"]
+[ext_resource type="PackedScene" uid="uid://m4uilvk1n1e0" path="res://scenes/teleporter.tscn" id="4_b72m1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
+texture = ExtResource("1_jyq2n")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ppgk2"]
+texture = ExtResource("2_7uttt")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_iywne"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_lbhrr")
+sources/1 = SubResource("TileSetAtlasSource_ppgk2")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, -44)
+tile_map_data = PackedByteArray("AAD+/wYAAQAAAAAAAAD//wYAAQAAAAAAAAAAAAYAAQAAAAAAAAABAAYAAQAAAAAAAAArAAMAAQAAAAAAAAAsAAMAAQAAAAAAAAAtAAMAAQAAAAAAAAAuAAMAAQAAAAAAAAAvAAMAAQAAAAAAAAAwAAMAAQAAAAAAAAAxAAMAAQAAAAAAAAD8/wQAAQAAAAAAAAD7/wQAAQAAAAAAAAD6/wIAAQAAAAAAAAD5/wIAAQAAAAAAAAD8/wAAAQAAAAAAAAD9/wAAAQAAAAAAAAD///7/AQAAAAAAAAAAAP7/AQAAAAAAAAD6//7/AQAAAAAAAAD5//7/AQAAAAAAAAD8//z/AQAAAAAAAAD9//z/AQAAAAAAAAA=")
+tile_set = SubResource("TileSet_iywne")
+
+[node name="Killzone" parent="." instance=ExtResource("3_6lxtr")]
+position = Vector2(0, 132)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_iywne")
+
+[node name="Teleporter" parent="." instance=ExtResource("4_b72m1")]
+position = Vector2(24, 44)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://cmpjlvbb35kqo"]
+[gd_scene load_steps=10 format=4 uid="uid://cmpjlvbb35kqo"]
 
 [ext_resource type="Texture2D" uid="uid://brolc2wbii7ad" path="res://assets/sprites/dungeon.png" id="1_2k3dv"]
 [ext_resource type="Texture2D" uid="uid://duho80ock2gg6" path="res://assets/sprites/dungeon (1).png" id="2_alqfr"]
+[ext_resource type="Script" uid="uid://dpxa1eckfc6bq" path="res://scripts/tile_map_layer.gd" id="3_alqfr"]
 [ext_resource type="PackedScene" uid="uid://l17bnsix3jo1" path="res://scenes/killzone.tscn" id="3_yqkch"]
 [ext_resource type="PackedScene" uid="uid://m4uilvk1n1e0" path="res://scenes/teleporter.tscn" id="4_6ep0u"]
 
@@ -23,16 +24,18 @@ sources/0 = SubResource("TileSetAtlasSource_lbhrr")
 sources/1 = SubResource("TileSetAtlasSource_ppgk2")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+distance = 5.0
 
 [node name="Level2" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, -44)
-tile_map_data = PackedByteArray("AAD+/wYAAQAAAAAAAAD//wYAAQAAAAAAAAAAAAYAAQAAAAAAAAABAAYAAQAAAAAAAAArAAMAAQAAAAAAAAAsAAMAAQAAAAAAAAAtAAMAAQAAAAAAAAAuAAMAAQAAAAAAAAAvAAMAAQAAAAAAAAAwAAMAAQAAAAAAAAAxAAMAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAArAAMAAQAAAAAAAAAsAAMAAQAAAAAAAAAtAAMAAQAAAAAAAAAuAAMAAQAAAAAAAAAvAAMAAQAAAAAAAAAwAAMAAQAAAAAAAAAxAAMAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_iywne")
+script = ExtResource("3_alqfr")
 
 [node name="Killzone" parent="." instance=ExtResource("3_yqkch")]
-position = Vector2(0, 132)
+position = Vector2(0, 3339)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("WorldBoundaryShape2D_iywne")
