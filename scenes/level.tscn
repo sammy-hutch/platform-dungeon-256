@@ -38,4 +38,4 @@ position = Vector2(0, 132)
 shape = SubResource("WorldBoundaryShape2D_iywne")
 
 [node name="Teleporter" parent="." instance=ExtResource("4_mx8sn")]
-position = Vector2(745, -4)
+position = Vector2(137, 44)

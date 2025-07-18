@@ -15,7 +15,7 @@ script = ExtResource("1_uwrxv")
 position = Vector2(56, -35)
 
 [node name="Camera2D" type="Camera2D" parent="GameManager/Player"]
-position = Vector2(-0.00634384, -23.8421)
+position = Vector2(-1, -0.999998)
 scale = Vector2(0.32, 1)
 zoom = Vector2(5, 5)
 limit_bottom = 10000

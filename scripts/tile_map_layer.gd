@@ -9,6 +9,7 @@ var TILE_SIZE = 16
 func _ready() -> void:
 	var schema = generate_schema()
 	var basic_map = generate_basic_map(schema)
+	var entity_positions = generate_entity_positions(basic_map)
 		
 		
 
@@ -31,8 +32,8 @@ func generate_basic_map(schema):
 	var map = schema
 	
 	# add borders by default
-	for y in range(len(map)):
-		for x in range(y):
+	for y in range(MAP_TILE_HEIGHT):
+		for x in range(MAP_TILE_WIDTH):
 			if x == 0 \
 			or x == MAP_TILE_WIDTH-1 \
 			or y == 0 \
@@ -46,22 +47,19 @@ func generate_basic_map(schema):
 		var x = randi_range(1, MAP_TILE_WIDTH-2)
 		var y = randi_range(1, MAP_TILE_HEIGHT-2)
 		if map[y][x] == -1:
-			if y == MAP_TILE_HEIGHT-1 \
-			or y == 0 \
-			or x == MAP_TILE_WIDTH-1 \
-			or x == 0:
+			var platform_heat = calculate_platform_heat(x,y, map)
+			if platform_heat > randf():
 				map[y][x] = 1
 				set_cell(Vector2i(x, y), 1, Vector2i(0,0))
 			else:
-				var platform_heat = calculate_platform_heat(x,y, map)
-				if platform_heat > randf():
-					map[y][x] = 1
-					set_cell(Vector2i(x, y), 1, Vector2i(0,0))
-				else:
-					map[y][x] = 0
-					set_cell(Vector2i(x, y), 1, Vector2i(1,0))
+				map[y][x] = 0
+				set_cell(Vector2i(x, y), 1, Vector2i(1,0))
 			tiles_to_fill -= 1
 	return map
+
+func generate_entity_positions(basic_map):
+	pass
+	# TODO: add functionality to assign positions in map to entities - maybe should be in game manager?
 
 func calculate_platform_heat(x, y, map):
 	var platform_heat = 0.5
